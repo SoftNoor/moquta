@@ -1,0 +1,52 @@
+{
+  "name": "moquta",
+  "version": "0.0.2",
+  "description": "Prayer times display for masajid",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "cd docs && live-server --no-browser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Softnoor/moquta.git"
+  },
+  "keywords": [
+    "prayer",
+    "times",
+    "prayer",
+    "times",
+    "adhan",
+    "iqama",
+    "masjid",
+    "makkah",
+    "mecca",
+    "madina",
+    "medina",
+    "masajid",
+    "fajr",
+    "shurooq",
+    "sunrise",
+    "dhuhr",
+    "asr",
+    "maghrib",
+    "ishaa",
+    "display",
+    "clock",
+    "prayer",
+    "clock",
+    "jummua",
+    "namaz"
+  ],
+  "author": "Anwar Musa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Softnoor/moquta/issues"
+  },
+  "homepage": "https://github.com/Softnoor/moquta#readme",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}
