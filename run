@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#insert_path
+
+fuser -k 8080/tcp
+cd ~/moquta
+git pull
+npm start

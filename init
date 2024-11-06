@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------------
+#Install NVM
+
+NVM_VERSION=18
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.40.1/install.sh | bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+
+nvm install $NVM_VERSION
+
+nvm use $NVM_VERSION
+
+#-------------------------------------------------------------------------------------
+#Install Dependencies
+cd ~/moquta
+npm install
+
+#-------------------------------------------------------------------------------------
+#Add path to run script
+sed -i -e "/^#insert_path/a PATH=$PATH" run
+
+#-------------------------------------------------------------------------------------
+# Add cron job
+
+CRON="@reboot /usr/bin/sh ~/moquta/run &"
+sudo /etc/init.d/cron start
+crontab -l 2>/dev/null | grep -q "$CRON" || (crontab -l 2>/dev/null; echo "$CRON" | crontab -)
+
+#-------------------------------------------------------------------------------------
+#Set chromium to autostart
+
+mkdir -p ~/.config/autostart
+echo -e "[Desktop Entry]\nType=Application\nName=Chromium\nExec=firefox --kiosk http://127.0.0.1:8080\nComment=Start moquta" > ~/.config/autostart/firefox.desktop
+
+#-------------------------------------------------------------------------------------
+#Set screen to portrait
+echo "display_rotate=3" | sudo tee -a /boot/config.txt >/dev/null
+
+#-------------------------------------------------------------------------------------
+#Reboot 
+reboot
